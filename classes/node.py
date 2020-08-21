@@ -2,6 +2,7 @@ import json
 import config
 
 class Node:
+    parent = None
     left = None
     right = None
     value = None
@@ -21,19 +22,6 @@ class Node:
             if self.value > value and self.right is not None:
                 return self.right.find(value)
         return None
-
-    def insert(self, morse, pos = -1):
-        if (pos+1) < len(morse):
-            next_code = morse[pos+1]
-            if next_code == '.' and self.left is None:
-                self.left = Node(morse, pos+1)
-            elif next_code == '-' and self.right is None:
-                self.right = Node(morse, pos+1)
-            
-            elif next_code == '.' and self.left is not None:
-                self.left.insert(morse, pos+1)
-            elif next_code == '-' and self.right is not None:
-                self.right.insert(morse, pos+1)
 
     def visit(self, order):
         if order == 'PREORDER':
