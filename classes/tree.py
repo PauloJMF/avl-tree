@@ -86,3 +86,21 @@ class Tree:
 
     def parse(self, letters):
         pass
+
+    def rotate_right(self, node):
+        new_root = node.left
+        hold = new_root.rigth
+
+        new_root.right = node
+        new_root.left = hold
+        
+        return new_root
+
+    def rotate_left(self, node):
+        new_root = node.right
+        hold = new_root.left
+
+        new_root.left = node
+        new_root.right = hold
+
+        return new_root
