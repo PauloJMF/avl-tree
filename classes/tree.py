@@ -5,11 +5,11 @@ import config
 class Tree:
     root = None
 
-    def __init__(self, root = None):
-        self.root = Node()
-        letters = json.load(open('./letters.json'))
-        for letters, morse in letters.items():
-            self.root.insert(morse)
+    def insert(self, value):
+        if self.root == None:
+            self.root = Node(value)
+        else:
+            self.root.insert(self, value)
 
     def find(self, letter):
         return self.root.find(letter, [])
