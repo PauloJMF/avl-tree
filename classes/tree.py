@@ -8,11 +8,94 @@ class Tree:
     def insert(self, value):
         if self.root == None:
             self.root = Node(value)
-        else:
-            self.root.insert(self, value)
+            return
+        
+        new_node = Node(value)
+        grandparent = None
+        parent = self.root
+        child = None
+        unbalanced = None
+        parent_unbalanced = None
+        balance = 0
 
-    def find(self, letter):
-        return self.root.find(letter, [])
+        while parent is not None:
+            if child.value > value:
+                child = parent.left
+            else:
+                child = parent.right
+            if child is not None and child.balance_factor != 0:
+                parent_unbalanced = parent
+                unbalanced = child
+            grandparent = parent
+            parent = child
+
+        if value < grandparent.value:
+            grandparent.left = new_node
+        else:
+            grandparent.right = new_node
+        
+        if value < unbalanced.value:
+            node = unbalanced.left
+        else:
+            node = unbalanced.right
+        
+        parent = node
+
+        while parent != child:
+            if value < parent.value:
+                parent.balance = 1
+                parent = parent.left
+            else:
+                parent.balance = -1
+                parent = parent.right
+
+        if value < unbalanced.value:
+            balance = 1
+        else:
+            balance = -1
+
+        # is balanced
+        if unbalanced.balance_factor == 0:
+            unbalanced.balance_factor = balance
+            return
+        if unbalanced.balance_factor != balance:
+            unbalanced.balance_factor = 0
+            return
+
+        if node.balance_factor == balance:
+            parent = node.left
+            if balance == 1:
+                right(unbalanced)
+            else:
+                left(unbalanced)
+            unbalanced.balance_factor = 0
+            node.balance_factor = 0
+        else:
+            if balance == 1:
+                parent = node.right
+                left(node)
+                unbalanced.left = parent
+                right(unbalanced)
+            else:
+                parent = node.left
+                right(node)
+                unbalanced.right = parent
+                left(unbalanced)
+            if parent.balance_factor == 0:
+                unbalanced.balance_factor = 0
+                node.balance_factor = 0
+            else:
+                if parent.balance_factor == balance:
+                    unbalanced.balance_factor = balance * -1
+                    node.balance_factor = 0
+                else:
+                    unbalanced.balance_factor = 0
+                    node.balance_factor = balance
+        parent.balance_factor = 0
+
+
+    def find(self, value):
+        return self.root.find(value)
 
     def visit_preorder(self):
         self.root.visit('PREORDER')
