@@ -65,22 +65,22 @@ class Tree:
         if node.balance_factor == balance:
             parent = node.left
             if balance == 1:
-                right(unbalanced)
+                self.right(unbalanced)
             else:
-                left(unbalanced)
+                self.left(unbalanced)
             unbalanced.balance_factor = 0
             node.balance_factor = 0
         else:
             if balance == 1:
                 parent = node.right
-                left(node)
+                self.left(node)
                 unbalanced.left = parent
-                right(unbalanced)
+                self.right(unbalanced)
             else:
                 parent = node.left
-                right(node)
+                self.right(node)
                 unbalanced.right = parent
-                left(unbalanced)
+                self.left(unbalanced)
             if parent.balance_factor == 0:
                 unbalanced.balance_factor = 0
                 node.balance_factor = 0
@@ -170,16 +170,16 @@ class Tree:
     def parse(self, letters):
         pass
 
-    def rotate_right(self, node):
+    def right(self, node):
         new_root = node.left
-        hold = new_root.rigth
+        hold = new_root.right
 
         new_root.right = node
         new_root.left = hold
         
         return new_root
 
-    def rotate_left(self, node):
+    def left(self, node):
         new_root = node.right
         hold = new_root.left
 
