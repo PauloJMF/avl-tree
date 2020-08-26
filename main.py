@@ -2,14 +2,15 @@ from classes.tree import Tree
 import sys
 
 tree = Tree()
-tree.visit_preorder()
-
-for i in range(10):
-    print(i)
-    tree.insert(i)
-tree.visit_inorder()
+tree.insert(40)
+tree.insert(30)
+tree.insert(20)
+tree.insert(10)
+tree.insert(0)
+tree.insert(-10)
+print(tree.get_height())
+tree.preorder()
 tree
-#tree.visit_preorder()
 #tree.visit_preorder()
 #tree.visit_inorder()
 #tree.visit_postorder()
