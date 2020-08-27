@@ -1,12 +1,10 @@
 from classes.node import Node
-
+from classes.print import printBTree
 class Tree:
     root = None
 
-    # Default BST implementation
-
     def insert(self, value):
-        if self.root == None: # No root, declares new tree
+        if self.root == None:
             self.root = Node(value)
             return self.root
         self.root = self.balanced_insert(value, self.root)
@@ -24,16 +22,20 @@ class Tree:
 
         # Left Left 
         if balance_factor > 1 and value < node.left.value: 
+            print("Right")
             return self.right(node) 
         # Right Right 
-        if balance_factor < -1 and value > node.right.value: 
+        if balance_factor < -1 and value > node.right.value:
+            print("Left")
             return self.left(node) 
         # Left Right 
-        if balance_factor > 1 and value > node.left.value: 
+        if balance_factor > 1 and value > node.left.value:
+            print("Left Right") 
             node.left = self.left(node.left) 
             return self.right(node) 
         # Right Left 
         if balance_factor < -1 and value < node.right.value: 
+            print("Right Left") 
             node.right = self.right(node.right) 
             return self.left(node) 
         
@@ -66,3 +68,6 @@ class Tree:
 
     def postorder(self):
         self.root.postorder()
+
+    def print(self):
+        return printBTree(self.root,lambda n: (str(n.value), n.left, n.right) )
