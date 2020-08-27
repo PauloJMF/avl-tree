@@ -17,5 +17,6 @@ tree.print()
 #tree.visit_postorder()
 #tree.print_inorder()
 #tree.print_postorder()
+tree.tree_preorder()
 
 

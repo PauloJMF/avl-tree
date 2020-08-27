@@ -1,8 +1,12 @@
 from classes.node import Node
-from print_tree import printBTree
+from utils.print_tree import printBTree
+from utils.print_tree_preorder import get_matrix_tree_preorder, show_tree
 
 class Tree:
     root = None
+    final_matrix = None
+    current_row = 0
+    max_height = 0
 
     def insert(self, value):
         if self.root == None:
@@ -70,5 +74,10 @@ class Tree:
     def postorder(self):
         self.root.postorder()
 
+    def tree_preorder(self):
+        self.max_height = self.get_height()
+        matrix_tree = get_matrix_tree_preorder(self)
+        show_tree(matrix_tree)
+        
     def print(self):
         return printBTree(self.root,lambda n: (str(n.value), n.left, n.right) )
