@@ -1,5 +1,6 @@
 from classes.node import Node
-from classes.print import printBTree
+from print_tree import printBTree
+
 class Tree:
     root = None
 
