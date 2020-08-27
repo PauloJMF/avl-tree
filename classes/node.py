@@ -34,16 +34,16 @@ class Node:
 
 
     def preorder(self):
+        self.visit()
         if self.left is not None:
             self.left.preorder()
-        self.visit()
         if self.right is not None:
             self.right.preorder()
 
     def inorder(self):
-        self.visit()
         if self.left is not None:
             self.left.preorder()
+        self.visit()
         if self.right is not None:
             self.right.preorder()
 
