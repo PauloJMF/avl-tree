@@ -1,6 +1,7 @@
 from classes.node import Node
 from utils.print_tree import printBTree
 from utils.print_tree_preorder import get_matrix_tree_preorder, show_tree
+import time
 
 class Tree:
     root = None
@@ -28,20 +29,26 @@ class Tree:
         # Left Left 
         if balance_factor > 1 and value < node.left.value: 
             print("Right")
+            time.sleep(2)
             return self.right(node) 
         # Right Right 
         if balance_factor < -1 and value > node.right.value:
             print("Left")
+            time.sleep(2)
             return self.left(node) 
         # Left Right 
         if balance_factor > 1 and value > node.left.value:
             print("Left Right") 
-            node.left = self.left(node.left) 
+            node.left = self.left(node.left)
+            self.print()
+            time.sleep(5)
             return self.right(node) 
         # Right Left 
         if balance_factor < -1 and value < node.right.value: 
             print("Right Left") 
-            node.right = self.right(node.right) 
+            node.right = self.right(node.right)
+            self.print()
+            time.sleep(5)
             return self.left(node) 
         
         return node
@@ -80,4 +87,6 @@ class Tree:
         show_tree(matrix_tree)
         
     def print(self):
-        return printBTree(self.root,lambda n: (str(n.value), n.left, n.right) )
+        if self.root is not None:
+            return printBTree(self.root,lambda n: (str(n.value), n.left, n.right) )
+        return None
