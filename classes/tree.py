@@ -29,26 +29,26 @@ class Tree:
         # Left Left 
         if balance_factor > 1 and value < node.left.value: 
             print("Right")
-            time.sleep(2)
+            # time.sleep(2)
             return self.right(node) 
         # Right Right 
         if balance_factor < -1 and value > node.right.value:
             print("Left")
-            time.sleep(2)
+            # time.sleep(2)
             return self.left(node) 
         # Left Right 
         if balance_factor > 1 and value > node.left.value:
             print("Left Right") 
             node.left = self.left(node.left)
             self.print()
-            time.sleep(5)
+            # time.sleep(5)
             return self.right(node) 
         # Right Left 
         if balance_factor < -1 and value < node.right.value: 
             print("Right Left") 
             node.right = self.right(node.right)
             self.print()
-            time.sleep(5)
+            # time.sleep(5)
             return self.left(node) 
         
         return node
